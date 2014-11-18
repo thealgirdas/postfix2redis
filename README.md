@@ -1,14 +1,14 @@
 postfix2redis
 =============
 
-Chef Cookbook I did for myself as a learning exercise.
+Chef Cookbook I did for myself as a learning exercise using Vagrant, Chef and Redis.
 
 * Currently made for **CentOS 6.5 only**.
 * Modifies postfix configs and hooks as filter for incoming mail with postfix2redis.sh.
 * Copies a postfix2redis.sh script, which sends the data it receives to Redis.
 * And installs Redis server from Remi's repository.
 
-Requerements
+Requirements
 ============
 
 Depends on yum package.
@@ -18,8 +18,9 @@ Depends on yum package.
 Vagrant
 =======
 
-```
 As I'm using this on my laptop in solo mode, my Vagrantfile is:
+
+```
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
@@ -78,6 +79,10 @@ And Vagrant.chef:
 
 > Chef::Config.ssl_verify_mode = :verify_peer
 
+
+Fire up your VM
+
+> vagrant up
 
 
 TODO
