@@ -85,7 +85,40 @@ Fire up your VM
 > vagrant up
 
 
-TODO
-====
+Recipes
+=======
 
-* write some tests in kitchen
+There are a few recipes for this cookbook. The default one just includes all of them.
+
+* `postfix2redis::default` - The default recipe which does all the stuff.
+* `postfix2redis::postfix` - Only configures Postfix. Skips Redis setup.
+* `postfix2redis::redis` - Only sets up Redis. Skips Postfix configuration.
+* `postfix2redis::mailx` - Only install mailx package. For use of 'mail' command.
+
+
+test-kitchen
+============
+
+Using BATS for test-kitchen. My `.kitchen.yml` looks like:
+
+```
+---
+driver_plugin: vagrant
+driver_config:
+  require_chef_omnibus: true
+
+provisioner: chef_zero
+
+platforms:
+  - name: centos-6.5
+
+suites:
+  - name: postfix2redis_suite
+    run_list:
+      - recipe[postfix2redis::default]
+      # - recipe[postfix2redis::postfix]
+      # - recipe[postfix2redis::mailx]
+      # - recipe[postfix2redis::redis]
+    attributes: {}
+
+```
